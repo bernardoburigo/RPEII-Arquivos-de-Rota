@@ -4,4 +4,8 @@ public class HeaderInvalidoMaisCaracterPermitidoException extends RuntimeExcepti
     public HeaderInvalidoMaisCaracterPermitidoException(String message) {
         super(message);
     }
+
+    public HeaderInvalidoMaisCaracterPermitidoException() {
+        super("Header inválido");
+    }
 }

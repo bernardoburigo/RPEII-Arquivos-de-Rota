@@ -1,7 +1,11 @@
 package exceptions;
 
-public class HerderInvalidoSPException extends RuntimeException {
-    public HerderInvalidoSPException(String message) {
+public class HeaderInvalidoSPException extends RuntimeException {
+    public HeaderInvalidoSPException(String message) {
         super(message);
+    }
+
+    public HeaderInvalidoSPException() {
+        super("Soma dos pesos difere (Valor do Registro HEADER = NN e Soma dos Pesos = NN)");
     }
 }
