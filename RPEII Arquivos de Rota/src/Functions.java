@@ -1,3 +1,6 @@
+import exceptions.ArquivoConfigEmBrancoException;
+import exceptions.RodarAplicacaoSemCriarDiretorioException;
+
 import java.io.*;
 import java.nio.file.*;
 import java.util.*;
@@ -21,7 +24,17 @@ public class Functions {
     
 
     private void lerConfigECreateDirs() throws IOException {
+        Path configPath = Paths.get(configFile);
+
+        if (!Files.exists(configPath)) {
+            throw new RodarAplicacaoSemCriarDiretorioException();
+        }
+
         List<String> linhasConfig = Files.readAllLines(Paths.get(configFile));
+
+        if (linhasConfig.isEmpty() || linhasConfig.get(0).trim().isEmpty() || linhasConfig.get(1).trim().isEmpty()) {
+            throw new ArquivoConfigEmBrancoException();
+        }
 
         this.pastaProcessado = linhasConfig.get(0).split("=")[1];
         this.pastaNaoProcessado = linhasConfig.get(1).split("=")[1];
